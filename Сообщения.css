@@ -80,3 +80,46 @@ body {
     font-family: var(--text-font);
     margin-top: 50px;
 }
+
+/* ------------------- Адаптивность (Медиазапросы) ------------------- */
+@media (max-width: 600px) {
+    /* Основной контейнер */
+    .contacts-main {
+        margin: 40px auto; /* Уменьшаем верхний и нижний отступы */
+        padding: 0 10px;
+    }
+
+    /* Заголовок-баннер */
+    .header-banner {
+        padding: 10px 20px; /* Уменьшаем отступы */
+        margin-bottom: 30px; /* Уменьшаем отступ снизу */
+        border-radius: 10px;
+    }
+    
+    .header-banner h1 {
+        font-size: 1.6em; /* Уменьшаем размер заголовка */
+    }
+    
+    /* Поле поиска */
+    .search-container {
+        max-width: 100%; /* Занимает всю ширину */
+        margin-bottom: 30px;
+    }
+    
+    .search-input {
+        padding: 12px 45px 12px 20px; /* Уменьшаем padding */
+        font-size: 1em; /* Уменьшаем размер шрифта */
+        border-width: 2px; /* Уменьшаем толщину рамки */
+    }
+    
+    .search-icon {
+        right: 15px; /* Сдвигаем иконку */
+        font-size: 1.1em;
+    }
+    
+    /* Сообщение "пока пусто..." */
+    .empty-message {
+        font-size: 1em;
+        margin-top: 30px;
+    }
+}
