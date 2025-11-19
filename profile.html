@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="profile-style.css"> 
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-logo">
+            ФАВОРИТ
+        </div>
+    </nav>
+
+    <div class="profile-page-container">
+        
+        <aside class="profile-sidebar">
+            <div class="profile-avatar-box" id="profileAvatarBox">
+                <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                <img src="#" alt="Фото профиля" id="profileImage" class="profile-image-hidden">
+                <i class="fa-solid fa-user" id="defaultUserIcon"></i>
+            </div>
+            
+            <div class="profile-info-box">
+                <input type="text" id="userName" value="Алексей Иванов" readonly class="profile-info-input">
+                <input type="text" id="userCountry" value="Россия" readonly class="profile-info-input">
+            </div>
+
+            <div class="profile-actions">
+                </div>
+            
+            <div class="profile-footer-actions">
+                <button class="profile-action-button settings-button" id="settingsToggle">
+                    <i class="fa-solid fa-gear"></i> Настройки
+                </button>
+                <button class="profile-action-button logout-button">
+                    <i class="fa-solid fa-arrow-right"></i> Выход
+                </button>
+            </div>
+        </aside>
+
+        <main class="profile-main-content">
+            
+            <div class="articles-header">
+                <h2>Мои статьи</h2>
+            </div>
+            
+            <div class="articles-list">
+                
+                <p class="empty-message">Пока пусто...</p>
+                
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const settingsToggle = document.getElementById('settingsToggle');
+        const userNameInput = document.getElementById('userName');
+        const userCountryInput = document.getElementById('userCountry');
+        
+        const profileAvatarBox = document.getElementById('profileAvatarBox');
+        const avatarUploadInput = document.getElementById('avatarUpload');
+        const profileImage = document.getElementById('profileImage');
+        const defaultUserIcon = document.getElementById('defaultUserIcon');
+
+        let isEditing = false; 
+
+        // -------- Функционал редактирования имени и страны --------
+        settingsToggle.addEventListener('click', () => {
+            if (!isEditing) {
+                // Включаем режим редактирования
+                userNameInput.removeAttribute('readonly');
+                userCountryInput.removeAttribute('readonly');
+                userNameInput.classList.add('editable-mode');
+                userCountryInput.classList.add('editable-mode');
+                
+                // Дополнительно: делаем аватар визуально доступным для изменения
+                profileAvatarBox.classList.add('editable-mode'); 
+                
+                settingsToggle.innerHTML = '<i class="fa-solid fa-check"></i> Сохранить';
+                isEditing = true;
+                
+            } else {
+                // Выключаем режим редактирования (Сохраняем)
+                userNameInput.setAttribute('readonly', true);
+                userCountryInput.setAttribute('readonly', true);
+                userNameInput.classList.remove('editable-mode');
+                userCountryInput.classList.remove('editable-mode');
+                
+                // Дополнительно: убираем визуальный признак
+                profileAvatarBox.classList.remove('editable-mode');
+                
+                settingsToggle.innerHTML = '<i class="fa-solid fa-gear"></i> Настройки';
+                isEditing = false;
+                
+                console.log('Имя сохранено:', userNameInput.value);
+                console.log('Страна сохранена:', userCountryInput.value);
+            }
+        });
+
+        // -------- Функционал загрузки/смены аватара --------
+        profileAvatarBox.addEventListener('click', () => {
+            // ФОТО МЕНЯЕТСЯ ТОЛЬКО В РЕЖИМЕ РЕДАКТИРОВАНИЯ
+            if (isEditing) { 
+                avatarUploadInput.click(); 
+            }
+        });
+
+        avatarUploadInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImage.src = e.target.result;
+                    profileImage.classList.remove('profile-image-hidden'); 
+                    defaultUserIcon.classList.add('profile-image-hidden'); 
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

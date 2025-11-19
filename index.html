@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВэбФаворитСтудентс</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar__header">
+            <h2>Меню</h2>
+            <i class="fa-solid fa-xmark close-icon" id="closeSidebar"></i>
+        </div>
+        <ul class="sidebar__list">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">Студенты</a></li>
+            <li><a href="#">Университеты</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <div class="help-panel" id="helpPanel">
+        <div class="help-panel__header">
+            <h3>Обращение в тех поддержку</h3>
+            <i class="fa-solid fa-xmark close-icon" id="closeHelpPanel"></i>
+        </div>
+        <div class="help-panel__content">
+            <textarea placeholder="Введите ваше сообщение..." rows="5" class="support-textarea"></textarea>
+            <button class="submit-btn">Отправить</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header__left">
+            </div>
+
+        <div class="header__title-box">
+            <h1 class="header__title">ФАВОРИТ СТУДЕНТ</h1>
+        </div>
+
+        <div class="header__right">
+            <i class="fa-solid fa-circle-user fa-2x user-icon" id="profileToggle"></i> 
+            
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="profile.html">Профиль</a>
+                <a href="#">Мои заявки</a>
+                <a href="сообщения.html">Сообщения</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="hero-image-container">
+            <img src="map_image.png" alt="Карта мира с изображением студентов" class="map-image">
+        </div>
+
+        <section class="cards-grid">
+            <a href="#" class="card card--purple-dark">
+                <h2>Обмен знаний и проектами</h2>
+                <img src="qwe.png" alt="Обмен знаниями" class="card-icon">
+            </a>
+
+            <a href="Культурный обмен.html" class="card card--blue-dark">
+                <h2>Культурный обмен</h2>
+                <img src="hyt.png" alt="Культурный обмен" class="card-icon">
+            </a>
+
+            <a href="#" class="card card--purple-light">
+                <h2>Образовательные программы</h2>
+                <img src="asd.png" alt="Образовательные программы" class="card-icon">
+            </a>
+
+            <a href="Профиль университетов.html" class="card card--blue-light">
+                <h2>Профиль университетов</h2>
+                <img src="zxc.png" alt="Профиль университетов" class="card-icon">
+            </a>
+        </section>
+    </main>
+
+    <i class="fa-solid fa-circle-question fa-3x help-icon" id="openHelpPanel"></i>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+
+        // Элементы для профильного меню
+        const profileToggle = document.getElementById('profileToggle');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        // Элементы для панели помощи
+        const helpPanel = document.getElementById('helpPanel');
+        const openHelpBtn = document.getElementById('openHelpPanel');
+        const closeHelpBtn = document.getElementById('closeHelpPanel');
+
+        // Логика бокового меню (закрытие)
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('sidebar--active');
+        });
+
+        // Логика профильного меню
+        profileToggle.addEventListener('click', (event) => {
+            profileDropdown.classList.toggle('profile-dropdown--active');
+            event.stopPropagation();
+        });
+
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', (event) => {
+            if (profileDropdown.classList.contains('profile-dropdown--active') && !profileDropdown.contains(event.target) && event.target !== profileToggle) {
+                profileDropdown.classList.remove('profile-dropdown--active');
+            }
+        });
+
+        // Логика панели помощи
+        openHelpBtn.addEventListener('click', () => {
+            helpPanel.classList.add('help-panel--active');
+        });
+
+        closeHelpBtn.addEventListener('click', () => {
+            helpPanel.classList.remove('help-panel--active');
+        });
+    </script>
+</body>
+</html>

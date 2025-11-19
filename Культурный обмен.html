@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный Культурный календарь</title>
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <link rel="stylesheet" href="Культурный обмен.css"> 
+    
+</head>
+<body>
+    <div class="header-container">
+        <h1 class="holiday-calendar-title">
+            Культурный календарь
+        </h1>
+    </div>
+
+    <div class="calendar-wrapper">
+        <div class="calendar-header">
+            <button id="prevMonth" aria-label="Предыдущий месяц">«</button>
+            
+            <h2 id="currentMonthYear"></h2>
+            
+            <button id="nextMonth" aria-label="Следующий месяц">»</button>
+        </div>
+        
+        <div class="calendar-body">
+            <div class="weekdays">
+                <span>Пн</span>
+                <span>Вт</span>
+                <span>Ср</span>
+                <span>Чт</span>
+                <span>Пт</span>
+                <span>Сб</span>
+                <span>Вс</span>
+            </div>
+            
+            <div class="days-grid" id="daysGrid">
+            </div>
+        </div>
+    </div>
+    <script src="calendar.js"></script>
+</body>
+</html>

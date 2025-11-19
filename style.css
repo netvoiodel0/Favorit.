@@ -1,0 +1,391 @@
+/* ------------------- Основные переменные ------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --main-bg-color: #f7f7f7;
+    --header-title-color: #5d1797;
+    --icon-color-right: #5d1797;
+    --sidebar-bg: #5d1797;
+    --sidebar-accent: #4a0f7a;
+    --text-font: 'Open Sans', sans-serif;
+    --title-font: 'Montserrat', sans-serif;
+}
+
+/* ------------------- Общие стили ------------------- */
+body {
+    background-color: var(--main-bg-color);
+    font-family: var(--text-font);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* ------------------- Шапка ------------------- */
+.header {
+    width: 98%;
+    max-width: 1800px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header__left {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    z-index: 10;
+}
+
+.menu-icon {
+    font-size: 2.5em;
+    color: var(--icon-color-right);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
+}
+
+.header__title-box {
+    border: 3px solid var(--header-title-color);
+    padding: 5px 20px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    z-index: 5;
+}
+
+.header__title {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--header-title-color);
+    text-transform: uppercase;
+    font-family: var(--title-font);
+    margin: 0;
+}
+
+.header__right {
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.user-icon, .mail-icon, .question-icon {
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--icon-color-right);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.user-icon:hover, .mail-icon:hover, .question-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ------------------- Основное содержимое ------------------- */
+.content {
+    width: 98%;
+    max-width: 1400px;
+    flex-grow: 1;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* КАРТА */
+.hero-image-container {
+    text-align: center;
+    margin: 15px 0 30px 0; /* уменьшено расстояние сверху */
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    display: block;
+    filter: brightness(1.1) saturate(1.1);
+}
+
+/* ------------------- Карточки ------------------- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+    padding: 0 50px;
+}
+
+.card {
+    min-height: 120px;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding-right: 120px;
+    font-family: var(--title-font);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    font-size: 1.5em;
+    width: 100%;
+    margin: 0;
+}
+
+/* ------------------- Иконки в карточках ------------------- */
+.card-icon {
+    /* ГЛАВНОЕ ИЗМЕНЕНИЕ: Абсолютное позиционирование для вывода за пределы кнопки */
+    position: absolute;
+    right: 0; /* Прижимаем к правому краю кнопки */
+    top: 50%;
+    transform: translateY(-50%); /* Центрируем по вертикали */
+
+    /* УВЕЛИЧЕНИЕ РАЗМЕРА КАРТИНКИ: */
+    width: 230px; 
+    height: 230px; 
+    object-fit: contain;
+    
+    /* ПРОЗРАЧНОСТЬ И БЕЗ РАМКИ: */
+    background-color: transparent; 
+    padding: 0; 
+    border-radius: 0; 
+    margin-left: 0; /* Убираем лишние margin */
+    margin-right: 15px; /* Небольшой отступ от края */
+}
+
+/* ------------------- Цветовые стили карточек (ВСЕ ФИОЛЕТОВЫЕ) ------------------- */
+.card--purple-dark {
+    background-image: linear-gradient(135deg, #6a1a9a 0%, #800080 100%);
+}
+.card--blue-dark {
+    /* ИЗМЕНЕНО: теперь фиолетовый */
+    background-image: linear-gradient(135deg, #5d1797 0%, #4a0f7a 100%); 
+}
+.card--purple-light {
+    background-image: linear-gradient(135deg, #8e24aa 0%, #a052c0 100%);
+}
+.card--blue-light {
+    /* ИЗМЕНЕНО: теперь фиолетовый */
+    background-image: linear-gradient(135deg, #a052c0 0%, #8e24aa 100%);
+}
+
+/* ------------------- Боковое меню ------------------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Скрыто изначально */
+    width: 260px;
+    height: 100%;
+    background-color: var(--sidebar-bg);
+    color: white;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar--active {
+    left: 0; /* Меню выезжает */
+}
+
+.sidebar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--sidebar-accent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar__header h2 {
+    margin: 0;
+    font-size: 1.4em;
+    font-family: var(--title-font);
+}
+
+.close-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.close-icon:hover {
+    transform: scale(1.1);
+}
+
+.sidebar__list {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+
+.sidebar__list li {
+    margin-bottom: 15px;
+}
+
+.sidebar__list a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.2s ease;
+}
+
+.sidebar__list a:hover {
+    color: #ffd700;
+}
+/* ------------------- Панель Профиля (Dropdown) ------------------- */
+.profile-dropdown {
+    position: absolute;
+    top: 55px; /* Сдвиг вниз от иконки */
+    right: 0;
+    width: 150px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    /* СКРЫТИЕ: Используем transform для эффекта выезда */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    
+    z-index: 100; /* Должен быть выше шапки */
+}
+
+/* СТИЛИЗАЦИЯ: Видимое состояние */
+.profile-dropdown--active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* СТИЛИЗАЦИЯ: Кнопки внутри */
+.profile-dropdown a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--sidebar-bg); /* Используем фиолетовый цвет */
+    font-size: 0.95em;
+    font-family: var(--text-font);
+    transition: background-color 0.1s ease;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f0f0f0;
+}
+/* ------------------- Конец Панели Профиля ------------------- */
+
+/* ------------------- Стили для иконки помощи (Кнопка) ------------------- */
+.help-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: var(--icon-color-right); /* #5d1797 */
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.help-icon:hover {
+    transform: scale(1.1);
+    color: var(--sidebar-accent); /* #4a0f7a - более темный */
+}
+
+/* ------------------- Стили для выезжающей панели помощи ------------------- */
+.help-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px; 
+    height: 100%;
+    background-color: #ffffff; /* Белый фон */
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%); /* Скрыта за пределами экрана */
+    transition: transform 0.3s ease-out;
+    z-index: 999; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.help-panel--active {
+    transform: translateX(0); /* Сдвигаем панель на экран */
+}
+
+.help-panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.help-panel__header h3 {
+    margin: 0;
+    color: var(--header-title-color); /* #5d1797 */
+    font-family: var(--title-font);
+}
+
+/* ------------------- Стили для формы обращения ------------------- */
+.support-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    resize: vertical; 
+    font-family: var(--text-font);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--sidebar-bg); /* #5d1797 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--title-font);
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: var(--sidebar-accent); /* #4a0f7a */
+}
