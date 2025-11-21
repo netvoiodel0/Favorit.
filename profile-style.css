@@ -1,6 +1,4 @@
 /* ------------------- Основные переменные ------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
-
 :root {
     /* Основной фиолетовый цвет (Purple) */
     --main-purple: #5d1797; 
@@ -28,220 +26,220 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: none; 
-    margin: 0 auto;
-    padding: 10px 40px; 
-    /* Возвращаем тонкую серую линию внизу, как было изначально */
-    border-bottom: 1px solid var(--light-gray); 
-    box-sizing: border-box;
-    
-    /* === ВОЗВРАЩАЕМ БЕЛЫЙ ФОН === */
-    background-color: white; 
-    background-image: none; /* Узор удален */
+    background-color: var(--main-purple);
+    color: white;
+    padding: 15px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-logo {
     font-size: 1.5em;
     font-weight: 700;
-    /* Возвращаем фиолетовый цвет для контраста с белым фоном */
-    color: var(--main-purple); 
+    font-family: var(--title-font);
 }
 
-/* ------------------- ПРОФИЛЬНЫЙ МАКЕТ (Profile Layout) ------------------- */
+.settings-toggle {
+    background-color: var(--sidebar-accent);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
 
+.settings-toggle:hover {
+    background-color: #3b0a5f;
+}
+
+.settings-toggle i {
+    margin-right: 8px;
+}
+
+/* ------------------- Общий контейнер профиля ------------------- */
 .profile-page-container {
     display: flex;
-    width: 100%;
-    max-width: 100%; 
-    margin: 0 auto;
-    min-height: calc(100vh - 50px);
-    background-color: white;
+    max-width: 1200px;
+    width: 95%;
+    margin: 40px auto;
+    gap: 30px;
 }
 
-/* ------------------- Боковая панель профиля (LEFT) ------------------- */
-
+/* ------------------- Боковая панель (САЙДБАР) ------------------- */
 .profile-sidebar {
-    width: 280px; 
+    width: 300px;
     background-color: var(--main-purple);
     color: white;
-    padding: 30px 20px;
+    padding: 30px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
-/* ------------------- АВАТАР (С возможностью смены) ------------------- */
+/* --- Аватар --- */
 .profile-avatar-box {
-    width: 200px;
-    height: 200px;
-    background-color: white;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin-bottom: 30px;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid white;
-    box-sizing: border-box;
-    overflow: hidden; 
-    cursor: pointer; 
+    margin-bottom: 25px;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+    transition: box-shadow 0.2s;
 }
 
-/* Стили для иконки пользователя по умолчанию */
-.profile-avatar-box i {
-    font-size: 8em;
+.profile-avatar-box.editable-mode {
+    cursor: pointer;
+    box-shadow: 0 0 0 4px #ffd700; /* Желтая рамка для режима редактирования */
+}
+
+.profile-avatar-box.editable-mode::after {
+    content: "\f030"; /* Иконка камеры */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.2em;
+}
+
+.profile-avatar-box i.fa-user {
+    font-size: 4em;
     color: var(--main-purple);
-    transition: opacity 0.3s ease; 
 }
 
-/* Стили для изображения профиля */
-.profile-avatar-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    border-radius: 50%; 
-}
-
-/* Класс для скрытия элементов */
 .profile-image-hidden {
     display: none;
 }
 
-/* ------------------- ИНФО-ПОЛЯ (ПОЛЯ ВВОДА) ------------------- */
-.profile-info-box {
+.profile-avatar-box img {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Инфобокс (имя/страна) --- */
+.profile-info-box {
+    width: 90%;
+    padding: 10px;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .profile-info-input {
     width: 100%;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.2); 
+    background: transparent;
     color: white;
-    font-size: 1em;
-    font-weight: 600;
-    text-align: center;
-    cursor: default;
-    font-family: var(--title-font);
-    box-sizing: border-box;
-    transition: background-color 0.2s, color 0.2s; 
-}
-
-/* СТИЛИЗАЦИЯ ПОЛЕЙ ВВОДА В РЕЖИМЕ РЕДАКТИРОВАНИЯ */
-.profile-info-input.editable-mode {
-    background-color: white; 
-    color: var(--main-purple); 
-    cursor: text; 
-}
-
-/* Блок действий, который теперь пуст */
-.profile-actions {
-    width: 100%;
-    margin-bottom: 30px; 
-}
-
-/* ------------------- ОБЩИЕ СТИЛИ КНОПОК ДЕЙСТВИЙ ------------------- */
-.profile-action-button {
-    width: 100%;
-    padding: 10px 5px; 
-    margin-bottom: 0; 
     border: none;
-    border-radius: 20px;
-    background-color: white; 
-    color: var(--main-purple);
-    font-size: 1em;
+    text-align: center;
+    margin-bottom: 5px;
+    font-family: var(--title-font);
+    font-size: 1.2em;
+    font-weight: 600;
+    outline: none;
+    transition: background-color 0.2s;
+    cursor: default;
+}
+
+#userName {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.profile-info-input:read-only {
+    cursor: default;
+    pointer-events: none; /* Отключаем события мыши, когда readonly */
+}
+
+.profile-info-input.editable-mode {
+    cursor: text;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 5px 0;
+    pointer-events: auto; /* Включаем события мыши */
+}
+
+/* --- Навигационное меню --- */
+.profile-nav-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.profile-nav-list li {
+    width: 100%;
+}
+
+.profile-nav-list a {
+    display: block;
+    padding: 15px 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+}
+
+.profile-nav-list a:hover,
+.profile-nav-list a.active {
+    background-color: var(--sidebar-accent);
+}
+
+.profile-nav-list i {
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+/* ------------------- Основное содержимое (КОНТЕНТ) ------------------- */
+.profile-content {
+    flex-grow: 1;
+    padding: 0 10px;
+}
+
+/* --- Заголовки-табы --- */
+.tabs-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s;
-    font-family: var(--title-font);
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* СТИЛИЗАЦИЯ ИКОНКИ ВНУТРИ КНОПКИ */
-.profile-action-button i {
-    margin-right: 10px;
-}
-
-.profile-action-button:hover {
-    background-color: var(--light-gray);
-}
-
-/* ------------------- Стили для кнопок внизу (Настройки и Выход) - ГОРИЗОНТАЛЬНО ------------------- */
-
-.profile-footer-actions {
-    width: 100%;
-    margin-top: auto; 
-    display: flex;
-    justify-content: space-between; 
-    gap: 10px; 
-}
-
-/* Стилизация кнопки Настройки */
-.settings-button {
-    flex-grow: 1; 
-    margin-bottom: 0; 
-}
-
-/* Стилизация кнопки Выход */
-.logout-button {
-    flex-grow: 1; 
-    margin-top: 0; 
-    margin-bottom: 0; 
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-}
-
-.logout-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* ------------------- Основное содержимое (RIGHT) ------------------- */
-
-.profile-main-content {
-    flex-grow: 1;
-    padding: 40px;
-    background-color: white; 
-}
-
-/* ЗАГОЛОВОК СТАТЕЙ */
-.articles-header {
-    width: 300px;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 25px;
-    background-color: var(--main-purple);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto 50px auto;
-}
-
-.articles-header h2 {
-    color: white;
-    font-size: 1.8em;
-    margin: 0;
+    color: #888;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-bottom-color 0.2s;
     font-family: var(--title-font);
 }
 
-/* СООБЩЕНИЕ "ПОКА ПУСТО" */
-.empty-message {
-    text-align: center;
-    color: #999;
-    font-size: 1.2em;
-    margin-bottom: 50px;
+.tab-btn.active {
+    color: var(--main-purple);
+    border-bottom-color: var(--main-purple);
 }
 
-/* КАРТОЧКИ СТАТЕЙ (Стили оставлены, но HTML пуст) */
+.tab-btn:hover:not(.active) {
+    color: #333;
+}
+
+/* --- Список статей (или пуст) */
 .articles-list {
     display: flex;
     flex-direction: column;
@@ -284,25 +282,166 @@ body {
     font-weight: 700;
     color: var(--main-purple);
     margin: 0 0 5px 0;
-    font-family: var(--title-font);
 }
 
-.article-snippet {
+.article-meta {
     font-size: 0.9em;
-    color: #666;
-    margin: 0 0 5px 0;
+    color: #777;
+    margin: 0;
 }
 
-.article-date {
-    font-size: 0.8em;
+.empty-message {
     color: #999;
+    font-size: 1.2em;
+    margin-top: 50px;
 }
-/* ------------------- АВАТАР (С возможностью смены) ------------------- */
-/* ... существующие стили ... */
 
-/* Визуальный признак, что аватар можно менять */
-.profile-avatar-box.editable-mode {
-    border: 5px solid #fff; /* Убедимся, что рамка видна */
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.7), 0 0 0 5px var(--light-gray); /* Тонкая рамка вокруг для привлечения внимания */
-    cursor: pointer; /* Курсор-указатель уже есть, но подчеркнем */
+.empty-message.hidden {
+    display: none;
+}
+
+
+/* ------------------- АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ) ------------------- */
+@media (max-width: 768px) {
+    /* Основной контейнер */
+    .profile-page-container {
+        flex-direction: column; /* Смена на вертикальный стек */
+        margin-top: 20px;
+        padding: 0 10px;
+        gap: 20px;
+    }
+    
+    /* Боковая панель (становится верхней секцией) */
+    .profile-sidebar {
+        width: 100%; /* Полная ширина */
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 0; /* Убрали лишний отступ */
+        padding: 20px 0 10px 0; /* Уменьшаем вертикальный padding */
+        border-radius: 10px;
+    }
+    
+    /* Аватар и инфобокс: центрируем их */
+    .profile-avatar-box,
+    .profile-info-box {
+        margin: 0 auto 15px auto;
+    }
+    
+    .profile-avatar-box {
+        width: 100px; /* Уменьшаем размер аватара */
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .profile-avatar-box.editable-mode::after {
+        padding: 6px;
+        font-size: 1em;
+    }
+    
+    #userName {
+        font-size: 1.4em;
+        margin-bottom: 5px;
+    }
+
+    .profile-info-input {
+        font-size: 1.1em;
+        text-align: center; /* Центрируем текст */
+    }
+
+    /* Настройки/Сохранить кнопка */
+    .main-nav {
+        padding: 10px 15px;
+    }
+
+    .nav-logo {
+        font-size: 1.2em;
+    }
+
+    .settings-toggle {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    /* Боковое меню навигации (теперь основное меню) */
+    .profile-nav-list {
+        display: flex; /* Делаем горизонтальным, чтобы сэкономить место */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto; /* Добавляем горизонтальный скролл */
+        padding: 10px 10px 10px 0; /* Добавляем отступы для прокрутки */
+        justify-content: flex-start;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        margin-top: 15px;
+    }
+    
+    .profile-nav-list::-webkit-scrollbar {
+        display: none; /* Скрываем полосу прокрутки для Webkit */
+    }
+    
+    .profile-nav-list li {
+        margin: 0 5px;
+        flex-shrink: 0; /* Не сжимать элементы */
+    }
+
+    .profile-nav-list a {
+        font-size: 0.9em;
+        padding: 8px 10px;
+        white-space: nowrap; /* Важно: не переносить текст */
+    }
+    
+    .profile-nav-list i {
+        display: none; /* Скрываем иконки для экономии места */
+    }
+
+    /* Основной контент (становится нижней секцией) */
+    .profile-content {
+        width: 100%;
+        padding: 0; 
+    }
+    
+    /* Табы */
+    .tabs-header {
+        flex-direction: column; /* Столбцом на мобильных */
+        gap: 5px;
+        margin-bottom: 20px;
+        border-bottom: none;
+    }
+    
+    .tab-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        background-color: var(--light-gray);
+        color: #333;
+        border-bottom: none;
+    }
+    
+    .tab-btn.active {
+        background-color: var(--main-purple);
+        color: white;
+        border-bottom: none;
+    }
+
+    /* Карточки статей */
+    .article-card {
+        flex-direction: column; /* Стэк для содержимого карточки */
+        align-items: flex-start;
+        padding: 10px;
+    }
+    
+    .article-thumb {
+        width: 100%; /* Полная ширина для превью */
+        height: 120px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .article-title {
+        font-size: 1em;
+    }
+    
+    .article-meta {
+        font-size: 0.8em;
+    }
 }
