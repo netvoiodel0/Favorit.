@@ -1,184 +1,132 @@
-/* ------------------- Основные переменные ------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
-
-:root {
-    --main-bg-color: #f7f7f7;
-    --header-title-color: #5d1797;
-    --icon-color-right: #5d1797;
-    --sidebar-bg: #5d1797;
-    --sidebar-accent: #4a0f7a;
-    --text-font: 'Open Sans', sans-serif;
-    --title-font: 'Montserrat', sans-serif;
-}
-
-/* ------------------- Общие стили ------------------- */
+/* ------------------- Общие стили для страницы сообщений ------------------- */
 body {
-    background-color: var(--main-bg-color);
-    font-family: var(--text-font);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    display: block; 
+    background-color: white; 
 }
 
-/* ------------------- Шапка ------------------- */
-.header {
-    width: 98%;
-    max-width: 1800px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px 0;
-}
-
-.header__content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.contacts-main {
+    max-width: 900px;
+    margin: 80px auto; 
     padding: 0 20px;
+    text-align: center;
 }
 
-.header__left {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Промежуток между иконкой меню и логотипом */
+/* ------------------- Поле поиска ------------------- */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px; 
+    margin: 0 auto 50px auto; /* Отступ 50px снизу после поля поиска */
 }
 
-.header__right {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Промежуток между иконками справа */
-    position: relative; /* Для позиционирования выпадающего меню */
-}
-
-.menu-toggle-icon {
-    font-size: 1.5em;
-    color: var(--header-title-color);
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.menu-toggle-icon:hover {
-    color: var(--sidebar-accent);
-}
-
-.logo {
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--header-title-color);
-    font-family: var(--title-font);
-}
-
-/* ------------------- Иконки справа ------------------- */
-.icon-link {
-    font-size: 1.4em;
-    color: var(--icon-color-right);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.icon-link:hover {
-    color: var(--sidebar-accent);
-}
-
-/* ------------------- Профильное выпадающее меню ------------------- */
-.profile-dropdown {
-    position: absolute;
-    top: 100%; /* Расположение под иконкой профиля */
-    right: 0;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    min-width: 180px;
-    transform-origin: top right;
-    transform: scaleY(0); /* Скрыто по умолчанию */
-    transition: transform 0.2s ease-out;
-    z-index: 100;
-}
-
-.profile-dropdown--active {
-    transform: scaleY(1); /* Отображено */
-}
-
-.profile-dropdown ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.profile-dropdown a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 0.9em;
-    transition: background-color 0.2s;
-}
-
-.profile-dropdown a:hover {
-    background-color: var(--main-bg-color);
-    color: var(--header-title-color);
-}
-
-.profile-dropdown i {
-    margin-right: 8px;
-    color: var(--sidebar-accent);
-}
-
-/* ------------------- Боковое меню (Скрыто) ------------------- */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px; 
-    height: 100%;
-    background-color: var(--sidebar-bg);
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
-    transform: translateX(-100%); /* Скрыта за пределами экрана */
-    transition: transform 0.3s ease-out;
-    z-index: 999; 
-    padding: 20px;
+.search-input {
+    width: 100%;
+    padding: 15px 50px 15px 25px;
+    border: 3px solid var(--header-title-color, #5d1797); 
+    border-radius: 40px;
+    font-size: 1.2em;
+    font-family: var(--text-font);
     box-sizing: border-box;
+    transition: box-shadow 0.3s;
+    outline: none;
+    color: #333;
 }
 
-.sidebar--active {
-    transform: translateX(0); /* Сдвигаем панель на экран */
+.search-input:focus {
+    box-shadow: 0 0 10px rgba(93, 23, 151, 0.4); 
 }
 
-.sidebar__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 10px;
-}
-
-.sidebar__header h2 {
-    margin: 0;
-    color: white;
-    font-family: var(--title-font);
-}
-
-.close-icon {
-    font-size: 1.8em;
-    color: white;
+.search-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--header-title-color, #5d1797); 
+    font-size: 1.3em;
     cursor: pointer;
-    transition: color 0.2s;
 }
 
-.sidebar__list {
-    list-style: none;
-    padding: 0;
+/* ------------------- Заголовок-баннер ------------------- */
+.header-banner {
+    display: inline-block;
+    padding: 15px 40px;
+    margin-bottom: 50px; /* Отступ 50px снизу после заголовка */
+    background-color: var(--header-title-color, #5d1797);
+    background-image: linear-gradient(135deg, #7c24b2 0%, #5d1797 100%); 
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.header-banner h1 {
+    color: white;
+    font-size: 2.2em;
+    font-weight: 700;
     margin: 0;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.sidebar__list a {
-    display: block;
-    padding: 12px 0;
-    text-decoration: none
+/* ------------------- Область контента ------------------- */
+.content-area {
+    margin-top: 20px;
+}
 
+.empty-message {
+    color: #999;
+    font-size: 1.2em;
+    font-family: var(--text-font);
+    margin-top: 50px;
+}
+
+/* ------------------- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (до 600px) 📱 ------------------- */
+@media (max-width: 600px) {
+    
+    .contacts-main {
+        /* Уменьшаем вертикальный отступ на мобильных */
+        margin: 50px auto 30px auto; 
+        /* Уменьшаем горизонтальный padding, чтобы дать контенту больше места */
+        padding: 0 15px;
+    }
+
+    /* --- Заголовок-баннер --- */
+    .header-banner {
+        /* Уменьшаем внутренние отступы */
+        padding: 10px 20px;
+        /* Уменьшаем внешний нижний отступ */
+        margin-bottom: 30px; 
+    }
+
+    .header-banner h1 {
+        /* Уменьшаем размер шрифта заголовка */
+        font-size: 1.6em;
+    }
+
+    /* --- Поле поиска --- */
+    .search-container {
+        /* Уменьшаем внешний нижний отступ */
+        margin-bottom: 30px; 
+    }
+
+    .search-input {
+        /* Уменьшаем размер шрифта */
+        font-size: 1em;
+        /* Уменьшаем padding, особенно слева, чтобы текст был ближе к краю */
+        padding: 12px 45px 12px 20px;
+    }
+
+    .search-icon {
+        /* Сдвигаем иконку немного левее, чтобы она не прилипала к краю */
+        right: 20px;
+        /* Уменьшаем размер иконки */
+        font-size: 1.2em; 
+    }
+
+    /* --- Сообщение об отсутствии контента --- */
+    .empty-message {
+        /* Уменьшаем размер шрифта */
+        font-size: 1em;
+        /* Уменьшаем верхний отступ */
+        margin-top: 30px;
+    }
+}
