@@ -140,3 +140,56 @@ body {
     z-index: 10; /* Поднимаем элемент над соседними */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Яркая тень */
 }
+
+/* ------------------- АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ) ------------------- */
+@media (max-width: 600px) {
+    /* Заголовок */
+    .holiday-calendar-title {
+        font-size: 22px;
+        padding: 8px 25px;
+        margin-bottom: 20px;
+    }
+
+    /* Обертка календаря */
+    .calendar-wrapper {
+        padding: 15px;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Шапка календаря */
+    #currentMonthYear {
+        font-size: 1.4em;
+    }
+
+    .calendar-header button {
+        padding: 8px 15px;
+        font-size: 1.2em;
+    }
+
+    /* Дни недели */
+    .weekdays {
+        font-size: 0.9em;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+
+    /* Ячейки дней */
+    .day-cell {
+        height: 65px; /* Уменьшаем высоту ячейки */
+        padding: 3px;
+    }
+    
+    .day-cell.holiday:hover {
+        transform: scale(1.1); /* Меньшее увеличение, чтобы не перекрывать слишком сильно */
+    }
+
+    .day-number {
+        font-size: 1em; /* Уменьшаем номер дня */
+    }
+
+    .holiday-info {
+        font-size: 0.65em; /* Уменьшаем текст праздника */
+        line-height: 1.1;
+    }
+}
